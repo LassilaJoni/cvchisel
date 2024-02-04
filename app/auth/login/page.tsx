@@ -43,9 +43,9 @@ export default async function LoginPage() {
     const supabase = createClient(cookieStore)
   
     const { data, error } = await supabase.auth.getUser()
-    if (!error || !data?.user) {
-      redirect('/dashboard')
-    }
+    if (data?.user) {
+      redirect('/dashboard');
+  }
 
 
   return (

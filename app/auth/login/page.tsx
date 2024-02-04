@@ -57,7 +57,7 @@ export default async function LoginPage() {
     <Card className="w-[350px]">
         <CardHeader>
     <CardTitle>Welcome Back!</CardTitle>
-    <CardDescription>Don't have an account? <Link className='text-blue-600 hover:underline' href="/signup">Sign up</Link></CardDescription>
+    <CardDescription>Don&apos;t have an account? <Link className='text-blue-600 hover:underline' href="/signup">Sign up</Link></CardDescription>
   </CardHeader>
   <CardContent>
     <form>

@@ -53,7 +53,7 @@ export const Decoration = {
                 width={1920}
                 height={1080}
                 src="/abas1.jpg"
-                alt="Reactive Resume - Screenshot - Builder Screen"
+                alt="background"
                 className="w-full h-full object-cover rounded-none shadow-none ring-0"
               />
       </div>

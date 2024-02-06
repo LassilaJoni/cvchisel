@@ -37,15 +37,15 @@ import {
 import Link from 'next/link'
 import { Decoration } from "@/components/ui/decoration";
 
-export default async function LoginPage() {
+export default async function SignupPage() {
 
     const cookieStore = cookies()
     const supabase = createClient(cookieStore)
   
-    const { data, error } = await supabase.auth.getUser()
-    if (data?.user) {
-      redirect('/dashboard');
-  }
+    //const { data, error } = await supabase.auth.getUser()
+    //if (data?.user) {
+    //  redirect('/dashboard');
+    //}
 
 
   return (
@@ -56,8 +56,8 @@ export default async function LoginPage() {
         
     <Card className="w-[350px]">
         <CardHeader>
-    <CardTitle>Welcome Back!</CardTitle>
-    <CardDescription>Don&apos;t have an account? <Link className='text-blue-600 hover:underline' href="/auth/signup">Sign up</Link></CardDescription>
+    <CardTitle>Welcome!</CardTitle>
+    <CardDescription>Already have an account? <Link className='text-blue-600 hover:underline' href="/auth/login">Log in</Link></CardDescription>
   </CardHeader>
   <CardContent>
     <form>
@@ -70,7 +70,7 @@ export default async function LoginPage() {
       <label htmlFor="password">Password</label>
       <Input id="password" name="password" type="password" placeholder='Enter your password' required />
       </div>
-      <Button formAction={login}>Log in</Button>
+      <Button formAction={signup}>Create Account</Button>
       </div>
     </form>
     </CardContent>

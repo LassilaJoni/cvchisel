@@ -8,6 +8,9 @@ export async function middleware(request: NextRequest) {
     },
   })
 
+  const path = request.nextUrl.pathname;
+
+  if (path === '/dashboard' || path.startsWith('/dashboard/')) {
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -54,7 +57,14 @@ export async function middleware(request: NextRequest) {
     }
   )
 
-  await supabase.auth.getUser()
+  const { data: { user } } = await supabase.auth.getUser();
+
+  // Redirect to login if the user is not authenticated
+  if (!user) {
+    const redirectUrl = new URL('/auth/login', request.url);
+    return NextResponse.redirect(redirectUrl);
+  }
+}
 
   return response
 }
@@ -68,6 +78,7 @@ export const config = {
      * - favicon.ico (favicon file)
      * Feel free to modify this pattern to include more paths.
      */
-    '/((?!_next/static|_next/image|favicon.ico).*)',
+    '/dashboard',
+    '/dashboard/:path*'
   ],
 }

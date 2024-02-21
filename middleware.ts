@@ -10,7 +10,7 @@ export async function middleware(request: NextRequest) {
 
   const path = request.nextUrl.pathname;
 
-  if (path === '/dashboard' || path.startsWith('/dashboard/')) {
+  if (path === '/dashboard' || path.startsWith('/dashboard/') || path === '/workshop' || path.startsWith('/workshop/')) {
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -78,7 +78,12 @@ export const config = {
      * - favicon.ico (favicon file)
      * Feel free to modify this pattern to include more paths.
      */
+    '/api',
+    '/api/resume',
+    '/api/resume/:path*/',
     '/dashboard',
-    '/dashboard/:path*'
+    '/dashboard/:path*',
+    '/workshop',
+    '/workshop/:path*',
   ],
 }

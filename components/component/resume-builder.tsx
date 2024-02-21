@@ -68,7 +68,7 @@ export function ResumeBuilder() {
         </section>
       </aside>
       <main className="w-1/2 bg-white p-8">
-        <h1 className="text-3xl font-bold mb-6">John Doe's Resume</h1>
+        <h1 className="text-3xl font-bold mb-6">John Does Resume</h1>
         <h2 className="text-xl font-semibold mb-4">Profile</h2>
         <p className="mb-6">
           Enthusiastic and highly motivated professional with excellent

@@ -2,25 +2,10 @@
 import * as React from "react";
 
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Plus } from "lucide-react";
-import { set } from "react-hook-form";
 
 import {
   Dialog,
@@ -41,15 +26,18 @@ h-[calc(100vh-140px)] lg:h-[calc(100vh-88px)]
 export default function CreateResumeCard() {
   const [title, setTitle] = React.useState("");
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleTitleChange = (event: any) => {
     setTitle(event.target.value);
   };
 
   const handleCreateResume = async () => {
-    const { data, error } = await supabase.auth.getUser();
+    const { data } = await supabase.auth.getUser();
 
     try {
-      await createResume(title, data.user.id);
+      if (data.user) {
+        await createResume(title, data.user.id);
+      }
     } catch (error) {
       console.error("Error creating resume:", error);
     }

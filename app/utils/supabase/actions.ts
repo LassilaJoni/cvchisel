@@ -1,5 +1,5 @@
-import { type CookieOptions, createServerClient } from '@supabase/ssr'
-import { cookies } from 'next/headers'
+import { type CookieOptions, createServerClient } from "@supabase/ssr"
+import { cookies } from "next/headers"
 
 /*
 Server Action client - To access Supabase from Server Actions and Route Handlers.
@@ -18,7 +18,7 @@ export function createClient(cookieStore: ReturnType<typeof cookies>) {
           cookieStore.set({ name, value, ...options })
         },
         remove(name: string, options: CookieOptions) {
-          cookieStore.set({ name, value: '', ...options })
+          cookieStore.set({ name, value: "", ...options })
         },
       },
     }

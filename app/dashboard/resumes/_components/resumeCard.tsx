@@ -1,20 +1,16 @@
 "use client";
 import * as React from "react";
-import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Plus } from "lucide-react";
 
-export default function ResumeCard({ id, title }) {
+interface ResumeCardProps {
+  id: string;
+  title: string;
+}
+
+export default function ResumeCard({ id, title }: ResumeCardProps) {
   const router = useRouter();
   const handleClick = () => {
     router.push(`/workshop/${id}`);

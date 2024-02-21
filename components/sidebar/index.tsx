@@ -4,8 +4,6 @@ import React from "react";
 
 import { LayoutDashboard, LucideIcon, Settings } from "lucide-react";
 import SidebarItem from "./item";
-
-import { createClient } from "@/app/utils/supabase/server";
 import SignOut from "../signout";
 
 interface ISidebarItem {

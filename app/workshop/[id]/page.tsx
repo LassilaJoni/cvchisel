@@ -20,7 +20,7 @@ const Page = ({ params }: ResumeProps) => {
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data, error } = await supabase.auth.getUser();
+        const { data } = await supabase.auth.getUser();
         if (data.user) {
           const payload = await getResumeById(params.id, data.user.id);
           setResume(payload);

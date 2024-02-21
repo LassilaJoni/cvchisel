@@ -1,7 +1,6 @@
 "use client";
 
 import { cn } from "@/helper/cn";
-import Image from "next/image";
 import React, {
   createContext,
   useState,
@@ -35,15 +34,17 @@ export const CardContainer = ({
     containerRef.current.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
     setIsMouseEntered(true);
     if (!containerRef.current) return;
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
     setIsMouseEntered(false);
-    containerRef.current.style.transform = `rotateY(0deg) rotateX(0deg)`;
+    containerRef.current.style.transform = "rotateY(0deg) rotateX(0deg)";
   };
   return (
     <MouseEnterContext.Provider value={[isMouseEntered, setIsMouseEntered]}>
@@ -129,7 +130,8 @@ export const CardItem = ({
     if (isMouseEntered) {
       ref.current.style.transform = `translateX(${translateX}px) translateY(${translateY}px) translateZ(${translateZ}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
     } else {
-      ref.current.style.transform = `translateX(0px) translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
+      ref.current.style.transform =
+        "translateX(0px) translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)";
     }
   };
 

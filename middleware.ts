@@ -1,5 +1,5 @@
-import { createServerClient, type CookieOptions } from '@supabase/ssr'
-import { NextResponse, type NextRequest } from 'next/server'
+import { createServerClient, type CookieOptions } from "@supabase/ssr"
+import { NextResponse, type NextRequest } from "next/server"
 
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({
@@ -10,7 +10,7 @@ export async function middleware(request: NextRequest) {
 
   const path = request.nextUrl.pathname;
 
-  if (path === '/dashboard' || path.startsWith('/dashboard/') || path === '/workshop' || path.startsWith('/workshop/')) {
+  if (path === "/dashboard" || path.startsWith("/dashboard/") || path === "/workshop" || path.startsWith("/workshop/")) {
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -39,7 +39,7 @@ export async function middleware(request: NextRequest) {
         remove(name: string, options: CookieOptions) {
           request.cookies.set({
             name,
-            value: '',
+            value: "",
             ...options,
           })
           response = NextResponse.next({
@@ -49,7 +49,7 @@ export async function middleware(request: NextRequest) {
           })
           response.cookies.set({
             name,
-            value: '',
+            value: "",
             ...options,
           })
         },
@@ -61,7 +61,7 @@ export async function middleware(request: NextRequest) {
 
   // Redirect to login if the user is not authenticated
   if (!user) {
-    const redirectUrl = new URL('/auth/login', request.url);
+    const redirectUrl = new URL("/auth/login", request.url);
     return NextResponse.redirect(redirectUrl);
   }
 }
@@ -78,12 +78,12 @@ export const config = {
      * - favicon.ico (favicon file)
      * Feel free to modify this pattern to include more paths.
      */
-    '/api',
-    '/api/resume',
-    '/api/resume/:path*/',
-    '/dashboard',
-    '/dashboard/:path*',
-    '/workshop',
-    '/workshop/:path*',
+    "/api",
+    "/api/resume",
+    "/api/resume/:path*/",
+    "/dashboard",
+    "/dashboard/:path*",
+    "/workshop",
+    "/workshop/:path*",
   ],
 }

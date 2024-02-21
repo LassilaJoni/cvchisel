@@ -1,7 +1,7 @@
-import { BellIcon, CheckIcon } from "@radix-ui/react-icons"
+import { BellIcon, CheckIcon } from "@radix-ui/react-icons";
 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -9,8 +9,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Switch } from "@/components/ui/switch"
+} from "@/components/ui/card";
+import { Switch } from "@/components/ui/switch";
 
 const notifications = [
   {
@@ -25,9 +25,9 @@ const notifications = [
     title: "Your subscription is expiring soon!",
     description: "2 hours ago",
   },
-]
+];
 
-type CardProps = React.ComponentProps<typeof Card>
+type CardProps = React.ComponentProps<typeof Card>;
 
 export function CardDemo({ className, ...props }: CardProps) {
   return (
@@ -74,5 +74,5 @@ export function CardDemo({ className, ...props }: CardProps) {
         </Button>
       </CardFooter>
     </Card>
-  )
+  );
 }

@@ -1,7 +1,9 @@
-import { supabase } from "../utils/supabaseClient";
+"use server"
+import { revalidatePath } from "next/cache";
+import { supabaseServer } from "../utils/supabaseServer";
 
 export async function createResume (title: string, userId: string) {
-  const { data, error } = await supabase
+  const { data, error } = await supabaseServer
     .from("resumes")
     .insert([
       {
@@ -17,25 +19,27 @@ export async function createResume (title: string, userId: string) {
 	} else {
     console.log("Data inserted:", data)
 	}
+  revalidatePath("/dashboard/resumes")
 }
 
-export async function getAllResumes (userId: string) {
-  const { data, error } = await supabase
+export async function getAllResumes () {
+
+
+  try {
+  const data = await supabaseServer
     .from("resumes")
     .select("*")
-    .eq("user", userId)
+  
+    return { data }
+  } catch (error) {
+    return { error: error }
+  }
 
-  if (error) {
-    console.error("Error getting resumes:", error)
-		throw error
-	}
 
-  console.log("Resumes:", data)
-	return data
 }
 
 export async function getResumeById (resumeId: string, userId: string) {
-  const { data, error } = await supabase
+  const { data, error } = await supabaseServer
     .from("resumes")
     .select("id, title, data")
     .eq("id", resumeId)
@@ -46,7 +50,6 @@ export async function getResumeById (resumeId: string, userId: string) {
     console.error("Error getting resume:", error)
 		throw error
 	}
-
   console.log("Resume:", data)
 	return data
 }

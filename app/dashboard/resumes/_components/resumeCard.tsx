@@ -7,7 +7,7 @@ import { Plus } from "lucide-react";
 
 interface ResumeCardProps {
   id: string;
-  title: string;
+  title: string | null;
 }
 
 export default function ResumeCard({ id, title }: ResumeCardProps) {
@@ -21,7 +21,7 @@ export default function ResumeCard({ id, title }: ResumeCardProps) {
       <Card className="h-[calc(33vh)] w-[calc(33vh)] cursor-pointer">
         <div className="flex flex-col items-center justify-center">
           <CardHeader>
-            <CardTitle>{title}</CardTitle>
+            <CardTitle>{title || "Error showing title"}</CardTitle>
           </CardHeader>
           <div className="">
             <CardContent>

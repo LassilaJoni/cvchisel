@@ -15,9 +15,11 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose,
 } from "@/components/ui/dialog";
 import { supabase } from "@/app/utils/supabaseClient";
-import { createResume } from "@/app/hooks/resumes";
+import { createResume } from "@/app/server/actions";
+import { revalidatePath } from "next/cache";
 /*
 Gets the whole area of the place
 h-[calc(100vh-140px)] lg:h-[calc(100vh-88px)]
@@ -25,7 +27,6 @@ h-[calc(100vh-140px)] lg:h-[calc(100vh-88px)]
 
 export default function CreateResumeCard() {
   const [title, setTitle] = React.useState("");
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleTitleChange = (event: any) => {
     setTitle(event.target.value);
@@ -37,6 +38,7 @@ export default function CreateResumeCard() {
     try {
       if (data.user) {
         await createResume(title, data.user.id);
+        revalidatePath("/dashboard/resumes");
       }
     } catch (error) {
       console.error("Error creating resume:", error);
@@ -82,7 +84,9 @@ export default function CreateResumeCard() {
             </div>
           </div>
           <DialogFooter>
-            <Button onClick={handleCreateResume}>Create</Button>
+            <DialogClose asChild>
+              <Button onClick={handleCreateResume}>Create</Button>
+            </DialogClose>
           </DialogFooter>
         </DialogContent>
       </Dialog>

@@ -1,0 +1,47 @@
+{
+  "basic": {
+    "name": "",
+    "wantedJobTitle": "",
+    "email": "",
+    "phoneNumber": "",
+    "website": "",
+    "location": ""
+  },
+  "experiences": [
+    {
+      "id": "14d58122-d2e4-4db8-802a-e2004e469330",
+      "company_name": "",
+      "location": "",
+      "job_title": "",
+      "date": "",
+      "description": ""
+    },
+    {
+      "id": "14d58122-d2e4-4db8-802a-e2004e469331",
+      "company_name": "",
+      "location": "",
+      "job_title": "",
+      "date": "",
+      "description": ""
+    }
+  ],
+  "educations": [
+    {
+      "id": "f85e72f5-8de5-43b6-a107-c634ee936cd2",
+      "schoolName": "",
+      "date": "",
+      "degreeAndMajor": "",
+      "gpa": "",
+      "description": ""
+    }
+  ],
+  "projects": [
+    {
+      "id": "f85e72f5-8de5-43b6-a107-c634ee936ed2",
+      "projectName": "",
+      "description": "",
+      "date": ""
+    }
+  ],
+  "skills": ""
+}

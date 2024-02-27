@@ -10,7 +10,7 @@ export async function middleware(request: NextRequest) {
 
   const path = request.nextUrl.pathname;
 
-  if (path === "/dashboard" || path.startsWith("/dashboard/") || path === "/workshop" || path.startsWith("/workshop/")) {
+
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -64,7 +64,7 @@ export async function middleware(request: NextRequest) {
     const redirectUrl = new URL("/auth/login", request.url);
     return NextResponse.redirect(redirectUrl);
   }
-}
+
 
   return response
 }

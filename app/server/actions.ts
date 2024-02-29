@@ -2,15 +2,13 @@
 import { revalidatePath } from "next/cache";
 import { supabaseServer } from "../utils/supabaseServer";
 
-export async function createResume (title: string, userId: string) {
+export async function createResume (title: string) {
   const { data, error } = await supabaseServer
     .from("resumes")
     .insert([
       {
         title: title,
         data: { name: "John Doe", age: "30", city: "New York" },
-        userId: userId,
-        user: userId
 			},
     ])
 
@@ -38,12 +36,11 @@ export async function getAllResumes () {
 
 }
 
-export async function getResumeById (resumeId: string, userId: string) {
+export async function getResumeById (resumeId: string) {
   const { data, error } = await supabaseServer
     .from("resumes")
     .select("id, title, data")
     .eq("id", resumeId)
-    .eq("user", userId)
     .single()
 
   if (error) {
@@ -52,4 +49,18 @@ export async function getResumeById (resumeId: string, userId: string) {
 	}
   console.log("Resume:", data)
 	return data
+}
+
+export async function updateResumeById (resumeId: string, data: string) {
+  const { data: queryData, error } = await supabaseServer
+    .from("resumes")
+    .update({ data: data })
+    .eq("id", resumeId)
+
+  if (error) {
+    console.error("Error updating resume:", error)
+    throw error
+  }
+  console.log("Resume updated:", queryData)
+  revalidatePath("/dashboard/resumes")
 }

@@ -4,16 +4,15 @@ import { TypedSupabaseClient } from "@/utils/supabase";
 export function getResumeById(
     client: TypedSupabaseClient, 
     resumeId: string,
-    userId: string
   ) {
     return client
       .from("resumes")
       .select(`
         id,
-        title
+        title,
+        data
       `)
       .eq("id", resumeId)
-      .eq("user", userId)
       .throwOnError()
       .single();
   }

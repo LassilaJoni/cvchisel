@@ -1,9 +1,58 @@
+"use client";
+import * as React from "react";
 import CVForm from "@/components/cv-form";
 import CVPreview from "@/components/cv-preview";
 import ControlBar from "@/components/cv-preview/control-bar";
 import { Box, Flex } from "@chakra-ui/react";
+import useResumeQuery from "@/hooks/use-resume-query";
+import SaveCVButton from "@/components/cv-form/save-cv";
+import { useQuery } from "@tanstack/react-query";
+import useSupabase from "@/hooks/useSupabase";
+import useSaveCV from "@/hooks/use-save-resume";
+import { aggregateData } from "@/app/utils/aggregateData";
 
-function BuildCVPage() {
+export default function BuildCVPage({ params }: { params: { id: string } }) {
+  const supabase = useSupabase();
+  //const { data: resume, isLoading, isError } = useResumeQuery(params.id);
+  const {
+    data: resume,
+    isLoading,
+    isError,
+  } = useQuery(useResumeQuery({ resumeId: params.id, client: supabase }));
+
+  console.log("resume", resume);
+
+  const [isSaving, setIsSaving] = React.useState(false);
+
+  const handleSaveCV = async () => {
+    setIsSaving(true);
+
+    try {
+      const aggregatedData = aggregateData();
+
+      const { error } = await supabase
+        .from("resumes")
+        .update({ data: aggregatedData })
+        .eq("id", params.id);
+
+      if (error) throw error;
+
+      console.log("CV saved successfully!");
+    } catch (error) {
+      console.error("Error saving CV:", error);
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error...</div>;
+  }
+
   return (
     <Flex
       height={"calc(100vh - 80px)"}
@@ -40,7 +89,7 @@ function BuildCVPage() {
           }
         `}
       >
-        <CVForm />
+        <CVForm resumeData={resume} />
       </Flex>
 
       <Flex
@@ -64,9 +113,8 @@ function BuildCVPage() {
           <CVPreview />
         </Box>
         <ControlBar />
+        <SaveCVButton onClick={handleSaveCV} isLoading={isSaving} />
       </Flex>
     </Flex>
   );
 }
-
-export default BuildCVPage;

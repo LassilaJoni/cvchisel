@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import useBasic from "@/app/stores/basic";
 import {
   Box,
@@ -13,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 
-function BasicForm() {
+function BasicForm({ resumeData }) {
   const {
     name,
     email,
@@ -28,6 +29,17 @@ function BasicForm() {
     setPhoneNumber,
     setWantedJobTitle,
   } = useBasic((state) => state);
+
+  React.useEffect(() => {
+    if (resumeData) {
+      setName(resumeData.data.basicInfo?.name ?? "");
+      setEmail(resumeData.data.basicInfo?.email || "");
+      setLocation(resumeData.data.basicInfo?.location || "");
+      setWebsite(resumeData.data.basicInfo?.website || "");
+      setPhoneNumber(resumeData.data.basicInfo?.phoneNumber || "");
+      setWantedJobTitle(resumeData.data.basicInfo?.wantedJobTitle || "");
+    }
+  }, [resumeData]);
 
   const Editor = dynamic(() => import("@/components/editor"), {
     ssr: false,

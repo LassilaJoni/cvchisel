@@ -37,8 +37,7 @@ export default function CreateResumeCard() {
 
     try {
       if (data.user) {
-        await createResume(title, data.user.id);
-        revalidatePath("/dashboard/resumes");
+        await createResume(title);
       }
     } catch (error) {
       console.error("Error creating resume:", error);

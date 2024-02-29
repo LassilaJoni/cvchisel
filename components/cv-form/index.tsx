@@ -5,10 +5,10 @@ import EducationForm from "./education";
 import ProjectForm from "./project";
 import SkillForm from "./skill";
 
-function CVForm() {
+function CVForm({ resumeData }) {
   return (
     <Flex flexDirection={"column"} gap={8}>
-      <BasicForm />
+      <BasicForm resumeData={resumeData} />
       <EducationForm />
       <ProfessionalExperienceForm />
       <ProjectForm />

@@ -1,24 +1,17 @@
 import { getResumeById } from "@/queries/get-resume-by-id";
-import useSupabase from "./useSupabase";
-import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/app/utils/supabaseClient";
+import { TypedSupabaseClient } from "@/utils/supabase";
 
-function useResumeQuery(resumeId: string) {
-    const client = useSupabase();
+function useResumeQuery({resumeId, client} : {resumeId: string, client: TypedSupabaseClient}) {
+    
     const queryKey = ["resumes", resumeId];
    
     const queryFn = async () => {
-      const { data, error } = await supabase.auth.getUser();
-      if (error || !data || !data.user) {
-        throw new Error("User not logged in");
-      }
-
-      return getResumeById(client,resumeId, data.user.id).then(
+      return getResumeById(client,resumeId).then(
         (result) => result.data
       ); 
     };
    
-    return useQuery({ queryKey, queryFn });
+    return { queryKey, queryFn };
   }
    
   export default useResumeQuery;

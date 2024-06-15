@@ -12,9 +12,8 @@ import {
   Input,
   Flex,
 } from "@chakra-ui/react";
-import dynamic from "next/dynamic";
 
-function BasicForm({ resumeData }) {
+function BasicForm({ resumeData }: { resumeData: any }) {
   const {
     name,
     email,
@@ -40,10 +39,6 @@ function BasicForm({ resumeData }) {
       setWantedJobTitle(resumeData.data.basicInfo?.wantedJobTitle || "");
     }
   }, [resumeData]);
-
-  const Editor = dynamic(() => import("@/components/editor"), {
-    ssr: false,
-  });
 
   return (
     <Card>

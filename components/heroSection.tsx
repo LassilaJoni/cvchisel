@@ -3,12 +3,13 @@ import { motion } from "framer-motion";
 import { Decoration } from "./ui/decoration";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-
+/*
+    <Decoration.Grid />
+   
+*/
 export const HeroSection = () => (
   <section id="hero" className="relative">
     <Decoration.Grid />
-    <Decoration.Image />
-
     <div className="mx-auto max-w-7xl px-6 lg:flex lg:h-screen lg:items-center lg:px-12">
       <motion.div
         className="mx-auto mt-32 max-w-3xl shrink-0 lg:mx-0 lg:mt-0 lg:max-w-xl lg:pt-8"

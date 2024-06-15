@@ -1,5 +1,5 @@
 "use client";
-
+import * as React from "react";
 import {
   Box,
   Button,
@@ -71,7 +71,7 @@ function Action({ index }: { index: number }) {
   );
 }
 
-function EducationForm() {
+function EducationForm({ resumeData }) {
   const {
     title: educationTitle,
     educations,
@@ -84,6 +84,12 @@ function EducationForm() {
     moveDown,
     moveUp,
   } = useEducation((state) => state);
+
+  React.useEffect(() => {
+    if (resumeData) {
+      setTitle(resumeData.data.education?.title ?? "");
+    }
+  }, [resumeData]);
 
   return (
     <Card>

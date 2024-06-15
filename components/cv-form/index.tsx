@@ -9,10 +9,10 @@ function CVForm({ resumeData }) {
   return (
     <Flex flexDirection={"column"} gap={8}>
       <BasicForm resumeData={resumeData} />
-      <EducationForm />
-      <ProfessionalExperienceForm />
-      <ProjectForm />
-      <SkillForm />
+      <EducationForm resumeData={resumeData} />
+      <ProfessionalExperienceForm resumeData={resumeData} />
+      <ProjectForm resumeData={resumeData} />
+      <SkillForm resumeData={resumeData} />
     </Flex>
   );
 }

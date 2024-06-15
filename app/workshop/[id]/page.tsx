@@ -8,7 +8,6 @@ import useResumeQuery from "@/hooks/use-resume-query";
 import SaveCVButton from "@/components/cv-form/save-cv";
 import { useQuery } from "@tanstack/react-query";
 import useSupabase from "@/hooks/useSupabase";
-import useSaveCV from "@/hooks/use-save-resume";
 import { aggregateData } from "@/app/utils/aggregateData";
 
 export default function BuildCVPage({ params }: { params: { id: string } }) {

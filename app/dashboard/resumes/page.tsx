@@ -2,8 +2,11 @@ import * as React from "react";
 
 import CreateResumeCard from "./_components/createResumeCard";
 import AllResumes from "./_components/allResumes";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
-export default async function ResumesLayout() {
+export default function ResumesLayout() {
+  const { isAuthenticated } = getKindeServerSession();
+
   return (
     <div>
       <div className="w-full">
